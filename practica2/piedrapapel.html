@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>piedra papel o tijera </title>
+</head>
+<body>
+  <button onclick="resultadoEscogido('piedra')
+    
+    ">PIEDRA</button>
+  <button onclick=" resultadoEscogido('papel')
+   ">PAPEL</button>
+  <button onclick=" resultadoEscogido('tijera')
+ ">TIJERA</button>
+
+ <button onclick="
+ score.ganadas=0,
+ score.perdidas=0,
+ score.empatadas=0
+ ">RESER</button>
+
+  <script>
+
+    const score =JSON.parse(localStorage.getItem('score')) || {
+        ganadas:0,
+        pedridas:0,
+        empatadas:0
+      };
+/* cualquiera de los dos es valio , al utilizar || hacemos el codigo mas corto
+    if (score === null){
+      score ={
+        ganadas:0,
+        pedridas:0,
+        empatadas:0
+      }
+    }
+    */
+    
+   
+    
+    function pickComputerMovemet() {
+     
+        let chooseComputer = '';
+        const numberResult = Math.random();
+        if (numberResult >= 0 && numberResult < 1/3){
+          chooseComputer='piedra';}
+        else if (numberResult >= 1/3 && numberResult < 2/3){
+          chooseComputer='papel';}
+        else if (numberResult >= 2/3 && numberResult <=1){
+          chooseComputer='tijera';}
+          return chooseComputer;
+    }
+
+    function resultadoEscogido(movemetPlayer){
+      const chooseComputer = pickComputerMovemet();
+      let resultado ='';
+
+        if (movemetPlayer === 'piedra'){
+                if (chooseComputer === 'piedra'){
+                resultado='empate';
+              } else if ( chooseComputer === 'papel'){
+                resultado = 'perdiste';
+              } else if (chooseComputer=== 'tijera'){
+                resultado ='ganaste';
+        } 
+        } else if (movemetPlayer=== 'papel'){
+              if (chooseComputer === 'piedra'){
+              resultado='ganaste';
+            } else if ( chooseComputer === 'papel'){
+              resultado = 'empataste';
+            } else if (chooseComputer=== 'tijera'){
+              resultado ='perdiste';
+            } 
+        } else if (movemetPlayer === 'tijera') {
+              if (chooseComputer === 'piedra'){
+              resultado='perdiste';
+            } else if ( chooseComputer === 'papel'){
+              resultado = 'ganaste';
+            } else if (chooseComputer=== 'tijera'){
+              resultado ='empataste';
+        } 
+        }
+          if (resultado === 'ganaste'){
+            score.ganadas += 1;
+          } else if (resultado=== 'perdiste'){
+            score.perdidas +=1;
+          } else if (resultado ==='empataste'){
+            score.empatadas += 1;
+          }
+          localStorage.setItem('score', (JSON.stringify(score)));
+
+        alert(`tu escogiste ${movemetPlayer} el computador escogio ${chooseComputer} osea que ${resultado} y el puntaje es 
+         Ganadas ${score.ganadas} Perdidas ${score.perdidas} Empatadas ${score.empatadas}`)
+    }
+    
+   
+   
+
+   
+
+  </script>
+  
+</body>
+</html>

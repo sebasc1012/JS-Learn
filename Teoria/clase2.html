@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fuctions</title>
+</head>
+<body>
+
+  <script>
+
+    /*
+    function great (name){
+       if (!name){
+        console.log('hi there');
+       } else {
+        console.log(`hello ${name}`);
+       }
+     
+    }
+
+    great('sebastian');
+    great();
+    
+
+    function convertFahrenhgeit (celcius)
+{
+    let fahrangeit = ( celcius * 9/5) + 32
+    return fahrangeit;
+}
+ let celcius = 25
+ let fahrangeit = convertFahrenhgeit(celcius);
+ console.log (`la temperatua en grados celcius es igual a ${celcius} y en farengeit es ${fahrangeit} `)
+
+
+ function celcius (farange){
+  return (farange - 32) * 5 / 9;
+ }
+console.log(celcius(86));*/
+
+/*una forma mas corta de sacar los objetos como lo es name edad e identificacion y colocarlos en una constante 
+
+const informationID = {
+  name:'sebastian',
+  edad: 25,
+  identificacion:1075315598
+}
+
+const { name, edad, identificacion} = informationID;
+
+console.log(name);*/
+
+
+
+const datos = ['nombre', 'sebastian', 'edad', 25];
+console.log(datos);
+
+
+//OBJETO MATH //
+
+console.log(Math.PI); // Nos muestra el numero PI //
+console.log(Math.abs(-7.8)); // siempre nos va a dar el numero absolut//
+console.log(Math.ceil (9.888)); // nos ayuda a redondear, siempre va a ejecutar al numero entero mayor es decir por ejmplo 7.2 lo redonde a 8 //
+console.log(Math.floor(7.9)); // este metodo lo redondea pero lo manda al valor menor es decir 7//
+ console.log(Math.round (7.2)); // este metodo si lo redondea como debe//
+ console.log(Math.sqrt(81));// saca la raiz cuadrada//
+console.log(Math.pow (2,5)) // esto quiere decir dos elebado a la cinco//
+console.log(Math.sign (2))// si es positivo da 1 si es negativo -1 y si es 0 pues 0 //
+
+
+console.log(Math.random())// nos da un valor aleatorio comprendido entre cero y uno
+
+// operador OR || Y AND &&  //
+
+// Cuando el valor de la ezquierda con el OR tiene a verdadero se va a proyectar y cuando tienda a falso se proyectara el de la derecha //
+
+console.log('primer valor ' || 'valor de la derecha') // cargara el primer valor a no ser de que sea un false un 0 null '', [] undefind null //
+console.log( false && 'valor de la derecha')// siempre va a cargar el primer valor
+
+// ALERT COMFIRM Y PROMP//
+/*
+alert('esto es una alerta')
+confirm (' esto es una comfirmacion');
+prompt (' esto es un aviso');*/
+
+// expreciones regulares//
+
+let textoPrueba = 'esto va a ser un texto de prueba para evaluar las expreciones regulares las cuales se encargan de revisar de acuerdo a lo que uno les iundique si dentro del texto esto o correo o numero de tarjeta se cumplen las condiciones por ejemplo si esta la palabra y para esto se utiulizan banderas tambien esto esto'
+
+let expreRegulares = new RegExp ('dentro', 'ig');  // en este caso ebn las banderas i significa que revise todo sin importar que este en mayusculas o minusculas , mientras que el g que significa global va a revisar todo el texto y no se va a quear con lo primero que encuentre//
+let regularExprecion = /esto/ig ;// esta es la forma abreviada y mas utilizada
+
+console.log (regularExprecion.test(textoPrueba)); // da true si la encuentra //
+console.log (regularExprecion.exec(textoPrueba));
+ 
+
+// FUNCIONES ANONIMAS AUTOEJECUTABLES //
+
+(function (){})()
+
+  </script>
+  
+</body>
+</html>

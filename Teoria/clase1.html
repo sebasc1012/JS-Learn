@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <button onclick="guess = 'heads';">heads</button>
+    <button onclick="guess = 'tails';">tails </button>
+    <script>
+
+// condicional If, if else, else //
+ const hora = 14;
+
+ if (hora >= 0 && hora<=5){
+  console.log('dejame dormir')
+ } else if ( hora >= 6 && hora <=11){
+  console.log('buenos dias')
+ } else if ( hora >= 12 && hora <=18){
+  console.log('buenas tardes')
+ } else {
+  console.log('buenas noches')
+ }
+
+ console.log(hora);
+
+// forma reducidad de colocar un IF  es mas la forma abreviada //
+ const edad = 5;
+
+ const mayorEdad = (edad >= 17) ? 'eres mayor de edad': 'eres menor de edad';
+
+console.log(mayorEdad);
+
+
+// forma switch alternativa de colocar varias bariables //
+const days = 1
+switch (days) {
+  case 1:
+    console.log('lunes')
+    break;
+    case 2:
+    console.log('martes')
+    break;
+    case 3:
+    console.log('miercoles')
+    break;
+    case 5:
+    console.log('jueves')
+    break;
+    case 6:
+    console.log('viernes')
+    break;
+
+  default: console.log('no es un dia')
+    break;
+}
+console.log(days);
+
+// para utilizar el FOR como un contador en el console.log se incializan los numeros del 1 al 10//
+
+for (let contador = 0; contador <= 10; contador++) {
+  console.log(contador);
+  
+}
+      
+
+// metodo for in se utiliza para recorrer todo lo que hay dentro de un objeto como por ejemplo//
+
+const datos ={
+  nombre:'sebastian',
+  apeyido:'castano',
+  correo:'sipega@hormil.com'
+}
+
+for (const general in datos) {
+  console.log(general);
+  
+}
+
+// metodo forEach nos va a permitir dividir todo lo que se encuentra dentro de un array como por ejemplo//
+
+const colores =[ 'rojo', 'verde', 'amarillo', 'negro']
+
+colores.forEach(element => {console.log(element)
+  
+});
+// para identificar errores//
+ 
+try {
+  const number = 'x'
+  if(isNaN(number)){
+    throw new Error ('el cararter escogido no es un numero')
+  }   
+  console.log(number * number);
+} catch (error) {
+  console.log ( `se produjo el siguiente error ${error}`); 
+}
+
+// break & continue //
+
+const series = [ 1, 2, 3, 4, 5, 6, 7,8 ,9, 10, 11, 12,13 ,14, 15, 16 ]
+ 
+for (let s = 0; s< series.length ; s++) {
+  if (series[s] % 2 === 0){
+    continue;
+  }
+  console.log(series[s]);
+}
+
+// destructuracion//
+//con array//
+const array1= [1,2,3];
+
+const [uno, dos, tres]= array1;
+console.log(uno, dos, tres);
+
+// con objetos//
+const persona = {
+  nombre:'camilo',
+  apeyido:'vargas',
+  calzado: 37
+}
+
+const{nombre, apeyido, calzado}= persona
+console.log(nombre,apeyido,calzado);
+
+
+//objetos literales una forma de abreviar mas la escritura, en este caso como la variable perro y raza ya estaban declarados anteriormente , unicamente en el momento de meterlos a un objeto , se coloca nuevamente los nombres de las variables, ya JS asumira cuales son//
+
+const perro ='milu',
+raza= 'meztiza'
+
+const animal={
+  perro,
+  raza,
+  //forma nueva de colocar una funcion es simplemente nombre funcion(){}
+  ladrido(){
+    console.log('gua gua gua' )
+  }
+}
+
+console.log(animal);
+animal.ladrido();
+
+// funciones y parametros REST//
+
+function sumar (a, b, ...c){
+  let resultado= (a +b)
+
+  c.forEach(function (n) {
+    resultado += n ;
+    
+  })
+
+  return resultado;
+}
+
+console.log(sumar(1,4,5,65));
+
+// metodo REST//
+function datosPersonal (...datos){
+  console.log(datos);
+}
+
+datosPersonal('camilo', 'bacerrra ', 23);
+//otro ejemplo metodo REST es este ejmplo unimos los dos arrray en uno solo //
+
+const datosNumericos1 = [1,2,3,4],
+datosNumericos2 = [5,6,7,8,9];
+
+const datosNumericosTotales =[ ...datosNumericos1, ...datosNumericos2];
+console.log(datosNumericosTotales);
+
+//Metodo spread con este metodo si tenemos un array y lo queremos ingresar a una funcion dentro de la invocacion a la funcion ,linea 171 colocamos 3 puntos antes del nombre del array , lo que significa que cada uno de estos datos ahora esta dentro de nuestrafuncion, adicional a esto se colocan los mismos tres puntos en nuestra funcion con el nombre que le queramos poner a lo que va a almacenar nuestros datos.//
+
+function datosEmpresa (...datos){
+console.log(datos)
+}
+
+const empresaDatos = [ 'claro', 'movistar', 25, 'importante'];
+datosEmpresa(...empresaDatos);
+
+
+//ARROW FUNCTIONS//
+
+const pruebaFucntion = (nombre , apellido) =>  console.log(`hola ${nombre} ${apellido}`);
+
+pruebaFucntion('sebastian', 'castano');
+
+
+//otro ejemplo//
+
+const suma = (a,b) => a+b;
+
+console.log(suma (12,7));
+
+//FUNCION CONSTRUCTORA//
+
+function Animales (perros, raza, ladrido){
+
+  this.perros=perros;
+  this.raza=raza;
+
+}
+Animales.prototype.ladrido= function(){
+  console.log(`gua gua gua ${this.perros}`);
+}
+
+const animalCasa1 = new Animales ('milu', 'meztiza'),
+animalesCasa2= new Animales ('chester', 'fresnh puddel');
+
+console.log(animalCasa1);
+console.log(animalesCasa2);
+console.log(animalCasa1.ladrido());
+console.log(animalesCasa2.ladrido());
+
+// para hacer numeros pares e impares //
+
+const numerosArray = [ 1, 2, 3, 4,5,6,7];
+
+const numerosPares = numerosArray.filter (function(elemento){
+  return elemento % 2 === 0 ;
+})
+
+console.log(numerosPares);
+
+// para hacer numeros impares//
+
+const numerosImpares = numerosArray.filter (elemto => elemto % 2 !== 0 );
+
+console.log(numerosImpares);
+
+// como utilizar en this //
+// es mejor  utilizar el this en el momento de llamar una variable de nuestro objeto, debido a que si lo colocamos objetoThis.marca tambien va a aparecer pero es mas probable que si cambiamos la variable en un futuro se cambie todo, para mas seguridad utilizamos el this//
+const objetoThis ={
+  marca:'toyota',
+  modelo: 2023,
+  condutor :'verstapen',
+  pista(){
+    console.log(` En esta pista conduce un vehiculo ${this.marca} en un de modelo ${this.modelo} y conductor ${this.condutor}`);
+  }
+}
+objetoThis.pista();
+//CLASES EN JS //
+
+class MarcaCarro { // se crea una clase con class //
+constructor(marca,modelo){ // se le asigna los parametros por medio de la palabra constructor//
+  this.marca=marca,
+  this.modelo=modelo}
+vehiculo(){ //el metodo se deja fuera de los corchetes de constructor //
+  console.log(`este vechiculo es de marca ${this.marca} y de modelo ${this.modelo}`)
+  }
+}
+
+
+class VelocidadCarros extends MarcaCarro{ // al agregfar una nueva clase que queremos que herede la informacion de la anterior utilizamos palabra extends//
+constructor(marca, modelo, velocidad){// nuevamente realizamos el constructor y agregamos el nuevo parametro que queramos colocar //
+  super(marca,modelo), // para llamar a los dos parametros anteriores utilizamos el metodo super( parametros anteriores)//
+  this.velocidad=velocidad, // y creamos el nuevo parametro//
+  this.piloto= null}
+
+  get getPiloto (){
+    return this.piloto
+  }
+// esto se utiliza para agregar un parametro en este caso para la varoable piloto 
+  set setPiloto (piloto){
+    this.piloto=piloto
+  }
+  
+  velTop(){
+    console.log(`este vehiculo de marca ${this.marca} modelo ${this.modelo} tiene una velocidad maxima de ${this.velocidad} y su piloto es ${this.piloto}`)
+  }
+}
+
+const audi = new VelocidadCarros ('audi', 2024, '284Km/h'),
+maclaren = new VelocidadCarros (' maclare' , 2024, '300 Km/h');// creamos las constantes con la informacion e imprimimos en un console,log para verificar su funcionalidad//
+
+console.log(audi);
+console.log(maclaren);
+audi.setPiloto='verstapen';
+maclaren.setPiloto='lewis'
+audi.velTop();
+maclaren.velTop();
+audi.vehiculo();
+
+
+
+
+    </script>
+  </body>
+</html>

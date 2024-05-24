@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRUEBA JS</title>
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <p class="parrafo" id="parrafo"> cuanto va en tu cuenta </p>
+
+  <button onclick="console.log(`esto es lo que tienes ${cartQuality}`)" class="botton uno">Show cuantiti</button>
+
+  <button onclick="updateCartQualy(1);" class="botton add">add to cart</button>
+
+  <button onclick="updateCartQualy(2);" class="botton +2">+2</button>
+
+  <button onclick="updateCartQualy(3);" class="botton +3">+3</button>
+
+  <button onclick="updateCartQualy(4);" class="botton +3">+4</button>
+
+  <button onclick="updateCartQualy(5);" class="botton +3">+5</button>
+
+<button onclick="updateCartQualy(-1);" class="botton +3">-1</button>
+
+<button onclick="updateCartQualy(-2);" class="botton +3">-2</button>
+
+<button onclick="updateCartQualy(-3);" class="botton +3">-3</button>
+
+  <button onclick="cartQuality= 0 
+  console.log('carta reseteada')
+  console.log(`ahora tienes :${cartQuality}`)" class="botton reset">reset card</button>
+
+
+  <script >
+    const a = ['negro' ,3, 5, 'blacno', ['uno', 'dos', 3]];
+    console.log(a);
+    console.log(a[4][2]);
+
+
+    const datos ={
+      nombre :'sebastian',
+      apellido :'castano',
+      edad : 25,
+      pasatiempos :['dormir', 'comer'],
+      contacto: {
+        facebook:'juan.castano',
+        twitter:'no tiene',
+        telefono:'412312313'
+      },
+      saludar:function(){
+        console.log(`hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} anos`);
+      }
+
+
+    }
+console.log(datos.pasatiempos[1]);
+datos.saludar();
+
+
+function convertidorGradosC (cost, taxPorcent){
+  console.log( cost * taxPorcent);
+}
+convertidorGradosC(20000, 0.4);
+/*
+  let cartQuality = 0;
+
+    function updateCartQualy (change){
+
+      if (cartQuality + change > 10){
+        alert (' tu bolsa esta llena');
+        return;
+        
+      } if (cartQuality + change < 0){
+       alert ('no tienes los suficientes productos');
+       return;
+      }
+    cartQuality += change;
+    console.log(`Cart cualitie: ${cartQuality}`);
+    }
+ 
+*/
+    
+
+  </script>
+</body>
+</html>

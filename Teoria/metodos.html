@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>metodos</title>
+</head>
+<body>
+
+  <script>
+//metodo at () el metodo at nos recibira un valor entero y lo devolvera en posicion dentro del array como por ejemplo, los numeros negativos tambien pueden ser utilizados empezando de atras para adelante por ejemplo en este caso -1 = posicion 8//
+
+const metodoAt = [ 1, 2,3,4,5,6,7,8];
+
+let numeroAt = -2;
+
+console.log(`en este metodo tenemos el numero ${numeroAt} y con el at sera el numero con posicion ${metodoAt.at(numeroAt)}`);
+
+
+// el metodo contac se utiliza para unir dos o mas arrays devolviendo uno nuevo //
+
+const metodoContac1 = ['a', 'b','c','d'];
+const metodoContac2 = [ 'e', 'f','g', 'h'];
+
+const metodoContac = metodoContac1.concat(metodoContac2);
+console.log(metodoContac);
+
+
+//metodo every es utilizado para decir si es verdadero o falso , dependiendo del parametro el  que vaya a evaluar dentro de una funcion //
+
+const everyProbar = (parametroEvaluar)=> parametroEvaluar < 40;
+
+const metodoEvery = [1, 30 ,39 ,38, 10]
+
+console.log(metodoEvery.every(everyProbar));
+
+// en este lo que se busca es ver si todos los parametros que estan dentro del arreglo son mayores a 10 como se cumple la condicion es true//
+const variableProbar = [10,11,22,34].every(longitud=> longitud>=10);
+
+console.log(variableProbar);
+
+
+//METODO FILTRE Crea un nuevo array con todos los elementos que cumplan una condicion puesta denro de una funcion//
+
+const metodoFiltre = [1,2,3,4,5,6,7,8,9];
+
+const resultadoFiltre = metodoFiltre.filter ((numero)=> numero % 2 ===0);
+
+console.log(resultadoFiltre);
+
+// metodo FILL es tulizado para llenar a los array con lo que uno quiera como por ejmplo si le colocamos solo un valor .array(0), va a llenar todo lo que este en el array con 0 ceros, si le colocamos .array(0,2) va a iniciar desde la srgunda posicion y el resto lo va a llenar de ceros, y si le colocamos un tercer numero (0,2,5) va a llenar de ceros desde la posicion dos y va a terminar en la posicion 5 //
+
+
+const metodoFill = [ 1,2,3,4,5,6,7];
+
+const resultadoFill = metodoFill.fill(0,2,6);
+console.log(resultadoFill);
+
+// el metodo find devuelve el primer valor que cumpla con los parametros que nosotros le coloquemos dentro de una funcion por ejemplo que el numero que sea mayo a 10 en tonces este ejemplo devuelve el primer numero que encuentre dentro del arreglo //
+
+
+const metodoFind = ['morado', 'purpura', 'negro','blanco', 'amarillo', 'verde']
+
+const resultadoFind = metodoFind.find((word)=> word.length > 6);
+
+console.log(resultadoFind);
+
+// el metodo findlast hace lo contrario del find en vez de buscar el primer dato que cumpla con el requerimiento de izquierda a derecha busca el dato pero de derecha a izquierda //
+
+const metodoFindLast = [30, 23,54,60,20,10]
+
+const resultadoFindLast = metodoFindLast.findLast((numeroMayor)=> numeroMayor > 40);
+console.log(resultadoFindLast); // en este caso nos tomaria el numero 60//
+
+
+// el metodo findIndex lo que va a hacer es buscar dentro de nuestro arreglo y decirnos en que posicion se encuentra lo que estemos buscando, en caso de no encontrarlo devolvera el valor de -1//
+
+
+const metodoFindIndex =
+ [ {nombre:'sebas', edad:25, genero:'masculino '},
+ {nombre:'berta', edad:17, genero:'femenino '},
+ {nombre:'celular', edad: 56, genero:'No aplica'}]
+
+ const resultadoFindIndex = metodoFindIndex.findIndex((numero)=> numero.edad >= 56);
+
+ console.log(resultadoFindIndex);
+
+ // tambien encontramos el metodo findLastIndex que es basicamente lo contrario empieza a buscar de derecha a izquierda y nos da la posicion del elemento que cumpla con lo requerido//
+
+ const findLastindex = [23,34,54,65,61,43].findLastIndex((lastIndex)=> lastIndex > 50);
+
+ console.log(findLastindex); // en este caso escoge el numero 61 que esta en la posicion numero 4 debido a que revisa al contrario//
+
+
+ // el metodo FLAT se utiliza para redicir el numero de array que tenemos por ejemplo cuando hay muchos [[[[[[]]]]]] el numero que coloquemos dentro del flat(X) va a ser la profundidad con la que aplane y que al final solo nos quede uno solo juego de []//
+
+ const metodoFlat = [ 1,2,3,[4,5,6,[,7,8,9]]].flat(2); // en este caso nos quedo [1,2,3,4,5,6,7,8,9]//
+
+ console.log(metodoFlat);
+
+ //Metodo FlatMap lo que hace este metodo es que primero realiza un mapeo de el array y luego el map lo aplana , es decir: //
+
+ const flatMap = [1,2,3,4,5,6,7,8,9].flatMap((n)=> n % 2 ===0 ? []: n * 2); // primero con el Map busque los numeros que sean divisibles por dos osea los numeros para y a este resultado le di una condicion de que si son divisible por dos fueran un [] y como el flat elimina los [] en tonces ya solo quedarian los numeros impares que son los que se multiplicaron por el 2 
+
+ console.log(flatMap);
+
+ const flatMap2 = [1,2,3,4,5].flatMap((valor)=> valor === 2 ? [2,2] : 1); // en este ejemplo fue igual los numeros dentro de nuestro array que fueran 2 se cambiarian por un [2,2] y con nuestro map quedaria 2,2 y el resto quedaria valiendo 1 //
+
+ console.log(flatMap2);
+
+
+ //metodo forEach() por cada elemento qiue tengamos en un array se realice lo que le pedimos en este caso le pedimos que nos mostrara el valor con su index o ubicacion//
+ 
+ const metodoForEach = [22,44,66,88];
+
+ metodoForEach.forEach((valor) => console.log(valor / 2));
+
+ 
+
+
+</script>
+  
+</body>
+</html>
