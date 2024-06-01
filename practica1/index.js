@@ -1,5 +1,5 @@
 
-//EJERCICIOS DE LOGICA DE PROGRAMACION//
+/*//EJERCICIOS DE LOGICA DE PROGRAMACION//
 
 
 
@@ -271,10 +271,26 @@ for (let i = num; i > 1 ; i-- ){
     return console.log(`su producto tiene un valor de ${costo} y un descuento de ${descuento}% para un total de $${Math.abs(((descuento / 100)* costo)- costo)}`);
    }
 
-cajero(8000,0)
+cajero(8000,50)
    
 //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 
+const tiempoTranscurrido = (fecha = undefined) => {
+  if (fecha === undefined) return console.warn('no ingresaste valor')
+  if (!(fecha instanceof Date)) return console.warn('no ingresaste fecha valida')
+
+  let diferenciaAnios = new Date().getTime() - fecha.getTime(),// lo que hace en este punto es restar los milisegundos que han pasado con los de nuestra fecha
+  convertidiorAnios = 1000 * 60 * 60 * 24 * 365; // convertimos los ms que en js === 1000 a años //
+  let aniosTrascurridos = Math.floor((diferenciaAnios /convertidiorAnios)); // y los dividimos para encontrar la diferencia 
+
+  return (Math.sign(aniosTrascurridos) === -1 )
+  ? console.log(`faltan ${Math.abs(aniosTrascurridos)} años`)
+  : (Math.sign(aniosTrascurridos)=== 1)
+    ? console.log(` han trascurrido ${aniosTrascurridos} años desde ${fecha.getFullYear()}`)
+    : console.log (`no han trascurrido años`);
+}
+
+tiempoTranscurrido(new Date( 2056,4,23));
 
 
 // 18 Escribe un programa que use console.log para imprimir todos los números del 1 al 100, con dos excepciones. Para los números divisibles por 3, imprime "Fizz" en lugar del número, y para los números divisibles por 5 (y no por 3), imprime "Buzz" en su lugar.
@@ -299,3 +315,248 @@ const abbrevName = (name) =>{
   console.log(name.match(/\b\w/g).join('.').toUpperCase());
 }
 abbrevName('sam harris');
+
+
+
+//20) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+
+
+const vocalConsonante = ( fraseBuscar = "") => {
+if (!fraseBuscar)return console.log('no ingresaste nada');
+if (typeof fraseBuscar !== 'string') return console.warn('no ingresaste valor valido');
+let contaroVocales = 0,
+contadorConsonantes = 0
+let vocales =/[AEIOU]/g;
+let consonantes =/[BCDFGHJKLMNPQRSTVWXYZ]/g;
+fraseBuscar= fraseBuscar.toUpperCase();
+
+for (let i = 0; i < fraseBuscar.length; i++) {
+  let letras = fraseBuscar.charAt(i)+'';// chartAt devuelve el numero que le pasemos en una cadena nueva le colocamos el +'' para que nos devuelva una cadena 
+  if (letras.match(vocales)){
+    contaroVocales++
+  }else if (letras.match(consonantes)){
+    contadorConsonantes++
+  }
+ }
+return console.log( ` esta frase tiene ${contaroVocales} vocales y ${contadorConsonantes} consonantes`)
+}
+vocalConsonante('hola que tal ');
+
+//21) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+
+
+const nombreRequisito = (nombre = '')=>{
+  if(!nombre) return console.warn('no agregaste nombre');
+  if (typeof nombre !== 'string') return console.warn('no agregaste texto')
+
+  let requisito = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+){1,5}(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/;
+  if(nombre.match(requisito)){
+    console.log(`${nombre} es un nombre valido`)
+  }else if (nombre.match()) { console.log ('nombre invalido')}
+
+}
+nombreRequisito('Sebastian Castano Cadena ')
+
+//22) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+
+const correoValidacion = (correo = "") => {
+  if (!correo) return console.warn('no ingresaste un correo')
+  if (typeof correo !== 'string') return console.log('parameto no valido')
+
+  let requisitoCorreo = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
+  // el correo no pude iniciar con pintos//
+  //no puede contener espacios dentro del STRING//
+  //el email no puede contener expresiones especiales (< *:;)//
+  //en medio del correo puede tener puntos andes del @
+  //el email puede contener doble dominio como lo seria .com.org //
+
+  if (correo.match(requisitoCorreo)){
+    console.log('tu correo es valido')
+  }else {console.log ('correo no valido')}
+}
+correoValidacion('jonmircha@gmail.com')
+
+
+//23) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+
+
+const elevacionCuadrado = (numerosElevados) => {
+  if (!(numerosElevados instanceof Array)) return console.warn ('datos no validos')
+  return console.log(`los numeros elevados son al cuadrado ${numerosElevados.map((x)=>Math.pow(x,2))}`)
+}
+
+elevacionCuadrado([1,2,3,4,5,8]);
+
+//24) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+
+
+const array2 =[1,23,100,-60, -120, 220];
+
+const menor = array2.sort((a,b)=>a-b).slice(0,1); // slice devuelve una copia nueva de array de acuerdo a lo que uno le ingrese, eliminando los demas objetos 
+const mayor = array2.sort((a,b)=> a-b).slice(-1)// sort () ordena los elementos de un arreglo (a, b) => a - b esto se utiliza para que se organicen de forma acendente//
+
+console.log (menor);
+console.log(mayor);
+
+console.log(` el numero mayor es ${mayor} y el numero menor es ${menor}`)
+
+
+
+
+//25) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+
+const pareImpares = (arregloNumerico) => {
+
+  let pares = arregloNumerico.filter((c)=> c % 2 === 0);
+  let impares=arregloNumerico.filter((v)=> v % 2 !== 0);
+
+  return console.log({ pares, impares})
+}
+
+pareImpares([1,2,3,4,5,6,7,8,9])
+
+//24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+
+const ordenNumerico= (arr = undefined)=>{
+   
+  if (!arr)return console.log('no ingreso valor')
+  if (!(arr instanceof Array)) return console.warn('valor ingresado no es un array')
+
+  for( let num of arr){
+    if(typeof num !== 'number' ) return console.log('valor no valido');
+  }
+
+  return console.log({
+    acendente: arr.map(x => x).sort(),
+    descendente:arr.map(x => x).sort().reverse()
+  });
+  
+}
+
+ordenNumerico([1,4,3,5,6,2,1,9,9,3]);
+
+//25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+
+const eliminDuplicado = ( duplicados= undefined) => {
+  if (duplicados === undefined) return console.warn('no agregaste ningun valor')
+  if (!(duplicados instanceof  Array)) return console.warn(' no agregaste ningun array')
+
+  return console.log (duplicados.filter((item, index)=> duplicados.indexOf(item) === index))
+}
+
+eliminDuplicado(["x", 10, "x", 2, "10", 10, true, true])
+//26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+
+
+const promedioNum = ( promedio= undefined) => {
+  if (!promedio) return console.log('no agregaste ningun valor a promediar')
+  if (!( promedio instanceof Array)) return console.warn('valor agregado no valido, no es un arreglo')
+  if (promedio.length === 1 ) return console.warn('se necesitan mas datos para promediar');
+  for (let num of promedio){
+        if (typeof num !== 'number'){return console.log ('tipo de dato erroneo')}
+      }
+
+  return console.log({
+    resultado:promedio.reduce((a,b)=> (a+b)) / promedio.length
+  })
+}
+
+promedioNum([1,3,4,5,5,5,4,2]);
+
+*/
+/* 
+27) Programa una clase llamada Pelicula.
+
+La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+  - Todos los datos del objeto son obligatorios.
+  - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 
+     7 restantes números.
+  - Valida que el título no rebase los 100 caracteres.
+  - Valida que el director no rebase los 50 caracteres.
+
+  - Valida que el año de estreno sea un número entero de 4 dígitos.
+
+  - Valida que el país o paises sea introducidos en forma de arreglo.
+  - Valida que los géneros sean introducidos en forma de arreglo.
+  - Valida que los géneros introducidos esten dentro de los géneros 
+     aceptados*.
+  - Crea un método estático que devuelva los géneros aceptados*.
+  - Valida que la calificación sea un número entre 0 y 10 pudiendo ser 
+    decimal de una posición.
+  - Crea un método que devuelva toda la ficha técnica de la película.
+  - Apartir de un arreglo con la información de 3 películas genera 3 
+    instancias de la clase de forma automatizada e imprime la ficha técnica 
+    de cada película.
+
+* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+*/
+
+class Pelicula {
+  constructor ({Id, titulo, director, anio , paisOrigen, genero, calificacion}){
+    this.Id=Id;
+    this.titulo=titulo;
+    this.director=director;
+    this.anio=anio;
+    this.paisOrigen=paisOrigen;
+    this.genero=genero;
+    this.calificacion=calificacion;
+
+    this.imbdValidacion(Id);
+    this.tituloValidacion(titulo);
+    this.directorValidacion(director);
+    this.anioValidar(anio);
+    this.paisValidar(paisOrigen);
+  }
+
+   validarStrings(propiedad, valor){
+    if (!valor) return console.warn(`No agrego ${propiedad} ${valor} esta vacio`);
+    if(typeof valor !== 'string') return console.error (`${propiedad} ${valor} no es una cadena de texto`);
+    return true;
+   }
+
+
+  imbdValidacion (Id){
+    if (this.validarStrings('IMBD',Id)){
+      if (!(/^([a-z]{2})([0-9]{7})$/.test(Id))){
+        console.warn('IMBD no valido debe tener dos letras y 7 numeros')
+      }else{ true}
+     
+   
+  }}
+
+  tituloValidacion (titulo){
+      if (this.validarStrings('titulo', titulo)){
+      if( (titulo.length > 100)){ console.log('Titulo no valido debe tener menos de 100 caracteres')}
+    }
+  }
+
+  directorValidacion(director){
+    if (this.validarStrings('director', director)){
+      if (director.length > 50){ console.log('El nombre del director no es valido')}
+    }
+  }
+  anioValidar (anio){
+    if(typeof anio !== 'number') return console.warn('dato no es un numero')
+    if (Math.sign(anio)=== -1) return console.warn('los años no pueden ser negativos')
+    if (!(Number.isInteger(anio))) return console.warn('debe ser un numero entero')
+    if (!(/^([0-9]{4}$)/.test(anio)))return console.warn('el año debe tener 4 digitos')
+   
+  }
+
+  paisValidar (paisOrigen){
+    if (!(paisOrigen instanceof Array)) return console.warn('dato introducido no es un array')
+
+  }
+}
+
+
+
+
+const peli = new Pelicula ({
+  Id:'as1020303',
+  titulo:'La gran pelicula',
+  director:'Juan Sebastian Casrtano',
+  anio:2022,
+  paisOrigen:['colombia']
+})
+
