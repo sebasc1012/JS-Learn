@@ -478,6 +478,8 @@ La clase recibirá un objeto al momento de instanciarse con los siguentes datos:
 
   - Valida que el país o paises sea introducidos en forma de arreglo.
   - Valida que los géneros sean introducidos en forma de arreglo.
+
+
   - Valida que los géneros introducidos esten dentro de los géneros 
      aceptados*.
   - Crea un método estático que devuelva los géneros aceptados*.
@@ -490,7 +492,7 @@ La clase recibirá un objeto al momento de instanciarse con los siguentes datos:
 
 * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
 */
-
+/*
 class Pelicula {
   constructor ({Id, titulo, director, anio , paisOrigen, genero, calificacion}){
     this.Id=Id;
@@ -506,6 +508,15 @@ class Pelicula {
     this.directorValidacion(director);
     this.anioValidar(anio);
     this.paisValidar(paisOrigen);
+    this.generosValidar(genero);
+    this.calificacionValidar(calificacion);
+  }
+
+  static get listaGeneros (){
+    return['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary' ,'Drama', 'Family', 'Fantasy', 'Film Noir', 'Game-Show', 'History', 'Horror', 'Musical', 'Music', 'Mystery', 'News', 'Reality-TV', 'Romance', 'Sci-Fi', 'Short', 'Sport', 'Talk-Show', 'Thriller', 'War', 'Western']}
+
+  static generosAceptados (){
+    return console.info(`los generos aceptados son ${Pelicula.listaGeneros.join(',')}`)//join lo une en una cadena de texto y se separa por comas//
   }
 
    validarStrings(propiedad, valor){
@@ -513,8 +524,6 @@ class Pelicula {
     if(typeof valor !== 'string') return console.error (`${propiedad} ${valor} no es una cadena de texto`);
     return true;
    }
-
-
   imbdValidacion (Id){
     if (this.validarStrings('IMBD',Id)){
       if (!(/^([a-z]{2})([0-9]{7})$/.test(Id))){
@@ -543,11 +552,44 @@ class Pelicula {
    
   }
 
+  arregoValidar (propiedad, valor){
+    if (!(valor instanceof Array)) return console.warn (`${propiedad} introducido no es un elemento array`)
+   if (!valor) return console.warn (`no ingreso ${propiedad}`);
+   if (valor.length === 0) return console.warn('no escrbio ningun valor')
+   for(let texto of valor){
+    if (typeof texto !== 'string') return console.warn(`el ${valor} tiene que ser en forma de texto`)
+   }
+  return true
+  }
+
   paisValidar (paisOrigen){
-    if (!(paisOrigen instanceof Array)) return console.warn('dato introducido no es un array')
+    (this.arregoValidar('pais', paisOrigen))
+  }
+  generosValidar(genero){
+   if(this.arregoValidar('generos', genero)){ // se valida que sea un arreglo//
+    for (let opciones of genero){ // se utiliza el metdo FOR para recorrer cada una de las opciones de nuestro genero que es un elemento iterable cono lo son las cadenas y los arreglos//
+      if(!Pelicula.listaGeneros.includes(opciones)){// en este paso lo que quiere decir es lo siguiente, si en nuestra lista de generos no se incluye la opcion que nosotros colocamos va a mandar el error//
+        console.error(`Generos incorrectos ${genero.join(',')}`)
+        Pelicula.generosAceptados()
+      }
+    }
+   }
+  }
+
+  calificacionValidar (calificacion){
+    if (typeof calificacion !== 'number'){
+     return console.log ('La calificacion debe ser en numeros')}
+    if (!calificacion){return console.log('no agrego ningun valor')}
+    return (calificacion < 0 || calificacion > 10  ) 
+    ? console.log('El numero no puede ser menor a 0 y mayor a 10')
+    : this.calificacion = calificacion.toFixed(1);
+    }
+
+    fichaTecnica(){
+      console.info(`Ficha tecnica: \n Titulo ${this.titulo} \n Director: ${this.director} \n año estrene ${this.anio} \n pais origen ${this.paisOrigen.join('-')} \n genero ${this.genero.join('-')} \n calificacion ${this.calificacion} \n IMDB ${this.Id}`);
+    }
 
   }
-}
 
 
 
@@ -555,8 +597,159 @@ class Pelicula {
 const peli = new Pelicula ({
   Id:'as1020303',
   titulo:'La gran pelicula',
-  director:'Juan Sebastian Casrtano',
+  director:'Juan Sebastian Castano',
   anio:2022,
-  paisOrigen:['colombia']
+  paisOrigen:['colombia'],
+  genero:['Mystery'],
+  calificacion:7.453,
 })
+
+peli.fichaTecnica();
+
+
+const pelicuasVarias = [
+  {
+    Id:'as1220403',
+    titulo:'Primera pelicula',
+    director:'Primer autor',
+    anio:2021,
+    paisOrigen:['colombia'],
+    genero:['Mystery'],
+    calificacion:2.33,
+  }, 
+  {
+    Id:'as1020303',
+    titulo:'segunda pelicula',
+    director:'Juan Sebastian Castano',
+    anio:2022,
+    paisOrigen:['colombia'],
+    genero:['Mystery'],
+    calificacion:7.453,
+  },
+  {
+    Id:'as1020303',
+    titulo:'tercer pelicula',
+    director:'Juan Sebastian Castano',
+    anio:2022,
+    paisOrigen:['colombia'],
+    genero:['Mystery'],
+    calificacion:7.453,
+  }
+]
+
+pelicuasVarias.forEach(el => {
+  new Pelicula(el).fichaTecnica()
+  
+});
+
+
+const diferencia = (s1,s2)=> {
+  let letrasDiferentes = []
+
+  for (let i = 0; i < s1.length; i++) {
+    if (s1[i] !== s2[i]){
+      letrasDiferentes.push(i)
+    }
+  }
+  return letrasDiferentes
+}
+
+console.log (diferencia('abcdefg', 'abcfefy'))
+
+
+function imprimirInventarioGranja(vacas, pollos) {
+  let cadenaVaca = vacas;
+  while (cadenaVaca.length < 3) {
+    cadenaVaca = "0" + cadenaVaca;
+  }
+  console.log(`${cadenaVaca} Vacas`);
+  let cadenaPollo = pollos;
+  while (cadenaPollo.length < 3) {
+    cadenaPollo = "0" + cadenaPollo;
+  }
+  console.log(`${cadenaPollo} Pollos`);
+}
+imprimirInventarioGranja(25, 11);
+*/
+
+//const min = (argumento1, argumento2) => {
+  //if (argumento1 < argumento2){
+  //  return argumento1;
+// } else { return argumento2}
+//}
+ //console.log(min(20, 10));
+
+//let cadena = 'BOBBBB'
+ 
+//let contador = 0
+//for (let i = 0 ; i < cadena.length ; i++) {
+ //if (cadena[i] === 'B'){
+  // contador++
+ //}
+//}
+//console.log(contador)
+
+
+function contarBs  (cadena, caracter)  {
+  let contador = 0;
+    for (let i = 0 ; i < cadena.length ; i++){
+      if(cadena[i] === caracter) { contador += 1} 
+    }
+    return contador;
+  }
+
+  function contarCadenas  (string) {
+    return contarBs(string , 'B')
+  }
+
+
+  console.log(contarCadenas('BBOB'))
+  console.log(contarBs('kakakakaLL', 'L'))
+
+
+
+// se quiere rentar un carro si se renta por mas de tres dias el costo al final se reducira en $20 si se renta mas de 7 sera de $50 , realiza el calculo correspondiente
+  function rentalCarCost(d) {
+    let costoDia = 40;
+    let descuentoTercerDia = 20;
+    let descuentoSeptimo = 50
+    
+    if (d < 3){ return (d * costoDia)} 
+    else if (d >= 3 && d <= 6){return (d * costoDia) - descuentoTercerDia }
+    else {return (d * costoDia) - (descuentoSeptimo) }
+  }
+
+
+  console.log(rentalCarCost(7))
+
+/*Escribe una función range que tome dos argumentos, inicio y fin, y devuelva un array que contenga todos los números desde inicio hasta fin, incluyendo fin.
+
+Luego, escribe una función sum que tome un array de números y devuelva la suma de estos números. Ejecuta el programa de ejemplo y verifica si realmente devuelve 55.
+
+Como asignación adicional, modifica tu función range para que tome un tercer argumento opcional que indique el valor de “paso” utilizado al construir el array. Si no se proporciona un paso, los elementos deberían aumentar en incrementos de uno, correspondiendo al comportamiento anterior. La llamada a la función range(1, 10, 2) debería devolver [1, 3, 5, 7, 9]. Asegúrate de que esto también funcione con valores de paso negativos, de modo que range(5, 2, -1) produzca [5, 4, 3, 2].*/
+
+
+
+let resultado = ''
+let min = 5
+let max = 15
+while (min <= max){
+  resultado += min ;
+  min++;
+}
+
+console.log(resultado)
+
+
+
+const range = (min, max )=>{
+  let resultadoArray = []
+  while (min <= max){
+    resultadoArray += min ;
+    min++;
+  }
+  return resultadoArray.split('')
+}
+console.log(range(1,10))
+
 
