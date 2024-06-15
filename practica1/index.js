@@ -725,31 +725,48 @@ function contarBs  (cadena, caracter)  {
 /*Escribe una función range que tome dos argumentos, inicio y fin, y devuelva un array que contenga todos los números desde inicio hasta fin, incluyendo fin.
 
 Luego, escribe una función sum que tome un array de números y devuelva la suma de estos números. Ejecuta el programa de ejemplo y verifica si realmente devuelve 55.
-
-Como asignación adicional, modifica tu función range para que tome un tercer argumento opcional que indique el valor de “paso” utilizado al construir el array. Si no se proporciona un paso, los elementos deberían aumentar en incrementos de uno, correspondiendo al comportamiento anterior. La llamada a la función range(1, 10, 2) debería devolver [1, 3, 5, 7, 9]. Asegúrate de que esto también funcione con valores de paso negativos, de modo que range(5, 2, -1) produzca [5, 4, 3, 2].*/
-
-
-
-let resultado = ''
-let min = 5
-let max = 15
-while (min <= max){
-  resultado += min ;
-  min++;
-}
-
-console.log(resultado)
+.*/
 
 
 
 const range = (min, max )=>{
   let resultadoArray = []
-  while (min <= max){
-    resultadoArray += min ;
-    min++;
-  }
-  return resultadoArray.split('')
-}
-console.log(range(1,10))
 
+  for (let i = min ; i <= max ; i++){
+    resultadoArray.push(i) // imprime todos los numeros que esten entre el min y el max y lo imprime en un array //
+  }
+
+  const sum = (arry) =>{
+
+    let sumar = arry.reduce((first, second) => first + second , 0 ) // utiliza todos los numeros del array y los suma //
+    console.log(sumar);
+  }
+
+  return (sum(resultadoArray))
+  
+}
+range(1,10)
+
+
+//Los arrays tienen un método reverse que cambia el array invirtiendo el orden en el que aparecen sus elementos. Para este ejercicio, escribe dos funciones, reverseArray y reverseArrayInPlace. La primera, reverseArray, debería tomar un array como argumento y producir un nuevo array que tenga los mismos elementos en orden inverso. La segunda, reverseArrayInPlace, debería hacer lo que hace el método reverse: modificar el array dado como argumento invirtiendo sus elementos. Ninguna de las funciones puede utilizar el método reverse estándar.//
+
+
+const reverseArray = (array) => {
+  let arrayInverso = []
+    for ( let i = array.length -1 ; i >= 0 ; i--){
+      arrayInverso.push(array[i]); // sin el metodo reverse 
+    }
+  return arrayInverso;
+  } 
+
+  let myArray = ["A", "B", "C"];
+  console.log(reverseArray(myArray));
+
+/*const reverseArray = (array)=>{
+ 
+  let invertir = array.reverse() // metodo reverse 
+
+  return console.log(invertir)
+}
+reverseArray([1,2,3])*/
 
